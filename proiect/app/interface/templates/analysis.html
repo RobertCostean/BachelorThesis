@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <form method="post" action="{{ url_for('analyze', symbol=symbol) }}">
+        <div class="form-group">
+            <label for="symbol">Stock Symbol:</label>
+            <input type="text" id="symbol" name="symbol" class="form-control" value="{{ symbol }}" required>
+        </div>
+        <div class="form-group">
+            <label for="chart_type">Chart Type:</label>
+            <select id="chart_type" name="chart_type" class="form-control">
+                <option value="line" {% if chart_type == 'line' %}selected{% endif %}>Line</option>
+                <option value="candlestick" {% if chart_type == 'candlestick' %}selected{% endif %}>Candlestick</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Show Indicators:</label><br>
+            <input type="checkbox" name="show_sma_50" {% if show_sma_50 %}checked{% endif %}> SMA 50<br>
+            <input type="checkbox" name="show_sma_200" {% if show_sma_200 %}checked{% endif %}> SMA 200<br>
+            <input type="checkbox" name="show_bollinger_bands" {% if show_bollinger_bands %}checked{% endif %}> Bollinger Bands<br>
+            {% for indicator in technical_indicators %}
+                {% if indicator not in ['Bollinger_Upper', 'Bollinger_Lower'] %}
+                    <input type="checkbox" name="show_{{ indicator }}" {% if indicator in active_indicators %}checked{% endif %}> {{ indicator }}<br>
+                {% endif %}
+            {% endfor %}
+            <input type="checkbox" name="show_macd" {% if show_macd %}checked{% endif %}> MACD<br>
+        </div>
+        <button type="submit" class="btn btn-primary">Analyze</button>
+    </form>
+
+    <h2 class="mt-5">Price Plot</h2>
+    <div>{{ price_plot | safe }}</div>
+
+    {% if technical_plots %}
+        <h2 class="mt-5">Technical Indicators</h2>
+        {% for plot in technical_plots.values() %}
+            <div>{{ plot | safe }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h2 class="mt-5">Sentiment Analysis</h2>
+    <div>{{ sentiment_plot | safe }}</div>
+
+    <h2 class="mt-5">Risk Scores</h2>
+    <ul>
+        <li>Combined Risk Score: {{ combined_risk_score }}</li>
+        {% for score, value in risk_scores.items() %}
+            <li>{{ score }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ type }} Data for {{ symbol }}</title>
+</head>
+<body>
+    <h1>{{ type }} Data for {{ symbol }}</h1>
+    <div>
+        {% if data is iterable and data is not string %}
+            <ul>
+                {% for key, value in data.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ data }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

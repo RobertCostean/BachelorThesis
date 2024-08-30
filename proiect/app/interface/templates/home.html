@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Risk Analysis App</h1>
+        <p class="lead">Use this app to analyze the risk of various stocks based on financial data, sentiment analysis, and technical indicators.</p>
+        <hr class="my-4">
+        <p>Sign up or log in to get started and manage your portfolio.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}" role="button">Sign Up</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 section">
+            <h2>About Us</h2>
+            <p>We provide a comprehensive risk analysis tool for investors and traders. Our platform aggregates financial data, news sentiment, and technical indicators to help you make informed decisions.</p>
+        </div>
+        <div class="col-md-2"></div> <!-- Spacer column for the gap -->
+        <div class="col-md-5 section">
+            <h2>Contact Us</h2>
+            <p><strong>Email:</strong> robert.costean02@e-uvt.ro</p>
+            <p><strong>Phone:</strong> 0753052930</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        background: url('https://th.bing.com/th/id/R.2f582526774359b76df8dd768fb2d933?rik=clCpB5qJNYL2cw&pid=ImgRaw&r=0') no-repeat center center fixed;
+        background-size: cover;
+    }
+    .jumbotron {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+    .section {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .col-md-2 {
+        margin-top: 20px; /* Add margin to create gap */
+    }
+</style>
+{% endblock %}

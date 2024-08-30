@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Portfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Risk Analysis App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('analyze') }}">Analyze Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('explanation') }}">Risk Score Explanation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('portfolio') }}">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <span class="navbar-text">Logged in as {{ current_user.email }}</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2>Portfolio Risk Scores</h2>
+        <div class="card mt-4">
+            <div class="card-body">
+                <p class="card-text">Average Combined Risk Score: <strong>{{ average_combined_risk }}</strong></p>
+                <p class="card-text">Weighted Average Risk Score: <strong>{{ weighted_average_risk }}</strong></p>
+                <p class="card-text">Market Risk Score: <strong>{{ market_risk_score }}</strong></p>
+            </div>
+        </div>
+
+    <div class="container mt-5">
+        <h1>My Portfolio</h1>
+
+        <form method="post" action="{{ url_for('portfolio') }}" class="form-inline mb-4">
+            <div class="form-group mr-2">
+                <label for="symbol" class="sr-only">Stock Symbol</label>
+                <input type="text" class="form-control" id="symbol" name="symbol" placeholder="Stock Symbol" required>
+            </div>
+            <div class="form-group mr-2">
+                <label for="investment" class="sr-only">Investment Amount</label>
+                <input type="number" class="form-control" id="investment" name="investment" placeholder="Investment Amount" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add/Update Stock</button>
+        </form>
+
+        <h2>Portfolio</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Investment</th>
+                        <th>Combined Risk Score</th>
+                        <th>Risk Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in portfolio %}
+                    <tr>
+                        <td><a href="{{ url_for('analyze_symbol', symbol=stock.symbol) }}">{{ stock.symbol }}</a></td>
+                        <td>{{ stock.investment }}</td>
+                        <td>{{ stock.risk_scores.combined_risk_score }}</td>
+                        <td>{{ stock.risk_category }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('delete_stock', symbol=stock.symbol) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

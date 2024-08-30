@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Risk Score Explanation</h1>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h2>Technical Risk Score</h2>
+            <p>The technical risk score is calculated based on LSTM (Long Short-Term Memory) forecasting. The LSTM model is trained to predict future stock prices and the risk is determined based on the volatility and accuracy of these predictions. This method leverages historical price data to assess potential future price movements and associated risks.</p>
+            
+            <h2>Financial Risk Score</h2>
+            <p>The financial risk score is derived from key financial metrics such as market capitalization, EBITDA, profit margins, return on equity, earnings growth, and debt-to-equity ratio. These metrics provide insights into the financial health and performance of the company.</p>
+            
+            <h2>Sentiment Risk Score</h2>
+            <p>The sentiment risk score is based on the analysis of news articles and social media mentions. It assesses the overall sentiment (positive, negative, or neutral) towards the stock and its potential impact on the stock price.</p>
+            
+            <h2>VAR Risk Score</h2>
+            <p>The VAR (Value at Risk) risk score is calculated using the Monte Carlo simulation method. It estimates the potential loss in value of a stock or portfolio over a specified period for a given confidence level.</p>
+            
+            <h2>Technical Indicators Risk Score</h2>
+            <p>The technical risk score is calculated based on various technical indicators such as moving averages, RSI, MACD, Bollinger Bands, and more. These indicators help identify the price trend and potential reversals.</p>
+
+            <h2>Combined Risk Score</h2>
+            <p>The combined risk score is the average of all the other scores, meaning each of the risk scores count 20% towards the combined risk score.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

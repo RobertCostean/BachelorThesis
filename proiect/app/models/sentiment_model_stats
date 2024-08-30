@@ -1,0 +1,32 @@
+Epoch 1/10
+Train loss: 0.6281, Train accuracy: 0.7196
+Validation loss: 0.4000, Validation accuracy: 0.81340
+Epoch 2/10
+Train loss: 0.2926, Train accuracy: 0.8862
+Validation loss: 0.3397, Validation accuracy: 0.8229
+Epoch 3/10
+Train loss: 0.1450, Train accuracy: 0.9494
+Validation loss: 0.4002, Validation accuracy: 0.8439
+Epoch 4/10
+Train loss: 0.0860, Train accuracy: 0.9727
+Validation loss: 0.5003, Validation accuracy: 0.8526
+Epoch 5/10
+Train loss: 0.0532, Train accuracy: 0.9822
+Validation loss: 0.5280, Validation accuracy: 0.8695
+Epoch 6/10
+Train loss: 0.0363, Train accuracy: 0.9892
+Validation loss: 0.6439, Validation accuracy: 0.8667
+Epoch 7/10
+Train loss: 0.0359, Train accuracy: 0.9892
+Validation loss: 0.5922, Validation accuracy: 0.8577
+Epoch 8/10
+Train loss: 0.0196, Train accuracy: 0.9943
+Validation loss: 0.7638, Validation accuracy: 0.8561
+Epoch 9/10
+Train loss: 0.0191, Train accuracy: 0.9948
+Validation loss: 0.6212, Validation accuracy: 0.8670
+Epoch 10/10
+Train loss: 0.0180, Train accuracy: 0.9948
+Validation loss: 0.7379, Validation accuracy: 0.8674
+Model saved to /kaggle/working/bert_sentiment_model.pth
+Training complete.
